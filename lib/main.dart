@@ -5,6 +5,11 @@ void main() => runApp(MyApp());
 
 // main class
 class MyApp extends StatelessWidget {
+
+  void answer_of_question(){
+    print("answer chosen");
+  }
+
   @override
   Widget build(BuildContext context) {
     var questions = [
@@ -22,15 +27,17 @@ class MyApp extends StatelessWidget {
             Text("The Qustion"),
             RaisedButton(
               child: Text("Answer 1"),
-              onPressed: null,
+              onPressed: answer_of_question,
             ),
             RaisedButton(
               child: Text("Answer 2"),
-              onPressed: null,
+              onPressed: ()=> print("answer 2 chosen"),
             ),
             RaisedButton(
               child: Text("Answer 3"),
-              onPressed: null,
+              onPressed: (){
+                print("answer 3 chosen");
+              },
             ),
           ],
         ), //if we want more than one widget
