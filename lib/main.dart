@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
-
+import './answer.dart';
 
 // main function
 void main() => runApp(MyApp());
@@ -27,14 +27,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     var questions = [
-      "What's your favorite Color?",
-      "What's your favorite Animal? ",
-      "What's your favorite A? ",
-      "What's your favorite B? ",
-      "What's your favorite C? ",
-      "What's your favorite D? ",
-      "What's your favorite E? ",
+      {
+        "question_text": "What's your favorite Color?",
+        "question_answers": ["Black", "Red", "Green", "Yellow"],
+      },
+      {
+        "question_text": "What's your favorite Animal?",
+        "question_answers": ["Rabbit", "Lion", "Snake", "Tiger"],
+      },
+      {
+        "question_text": "Who is the founder of Pakistan?",
+        "question_answers": ["Quaid e Azam", "Allama Iqbal", "SS", "ADAS"],
+      },
+      {
+        "question_text": "What's your favorite cricketer?",
+        "question_answers": ["Afridi", "AB", "Root", "Smith"],
+      },
     ];
 
     return MaterialApp(
@@ -45,22 +55,11 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: <Widget>[
             Question(
-              questions[_question_index],
+              questions[_question_index]["question_text"],
             ),
-            RaisedButton(
-              child: Text("Answer 1"),
-              onPressed: _answer_of_question,
-            ),
-            RaisedButton(
-              child: Text("Answer 2"),
-              onPressed: () => print("answer 2 chosen"),
-            ),
-            RaisedButton(
-              child: Text("Answer 3"),
-              onPressed: () {
-                print("answer 3 chosen");
-              },
-            ),
+            ...(questions[_question_index]["question_answers"] as List<String>).map((answer){
+              return Answer(_answer_of_question,answer);
+            }).toList()
           ],
         ), //if we want more than one widget
         //then we use Column  /// list of widgets
